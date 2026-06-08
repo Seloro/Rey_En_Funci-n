@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class Control_Rey : MonoBehaviour
 {
-    [Header("Configuración Inicial")]
+    [Header("Color")]
     public MeshRenderer mesh;
     public Color32 color;
 

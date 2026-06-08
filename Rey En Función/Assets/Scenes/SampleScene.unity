@@ -201,19 +201,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129497300}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 897707773}
-        m_TargetAssemblyTypeName: Control_Rey, Assembly-CSharp
-        m_MethodName: IndicarMovimientoY
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &129497300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,19 +1083,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 760884767}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 897707773}
-        m_TargetAssemblyTypeName: Control_Rey, Assembly-CSharp
-        m_MethodName: IndicarMovimientoX
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &760884767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,7 +1191,7 @@ MonoBehaviour:
   mesh: {fileID: 570768501}
   color:
     serializedVersion: 2
-    rgba: 16711680
+    rgba: 4294901760
   ladoIzquierdo: 0
   tilemapTablero: {fileID: 1125520454}
   columnasLimite: 5
@@ -1261,7 +1237,7 @@ MonoBehaviour:
   mesh: {fileID: 1831015561}
   color:
     serializedVersion: 2
-    rgba: 255
+    rgba: 4278190335
   ladoIzquierdo: 1
   tilemapTablero: {fileID: 1125520454}
   columnasLimite: 5
@@ -1369,19 +1345,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 916891001}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 897707773}
-        m_TargetAssemblyTypeName: Control_Rey, Assembly-CSharp
-        m_MethodName: IndicarMovimientoX
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &916891001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,19 +1605,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1025381163}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 897707773}
-        m_TargetAssemblyTypeName: Control_Rey, Assembly-CSharp
-        m_MethodName: IndicarMovimientoY
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1025381163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6125,19 +6077,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1134737497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 897707773}
-        m_TargetAssemblyTypeName: Control_Rey, Assembly-CSharp
-        m_MethodName: IndicarMovimientoX
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1134737497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6258,19 +6198,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1229817442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 897707773}
-        m_TargetAssemblyTypeName: Control_Rey, Assembly-CSharp
-        m_MethodName: IndicarMovimientoY
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1229817442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6319,6 +6247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1265569453}
   - component: {fileID: 1265569452}
+  - component: {fileID: 1265569454}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -6354,6 +6283,83 @@ Transform:
   - {fileID: 1125520452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265569454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265569451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5014bcda5a3a7ba4b8704e13c9e108c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  reyes:
+  - {fileID: 897707773}
+  - {fileID: 883147182}
+  contenedorBotones: {fileID: 1592662344}
+  listaPistas:
+  - ecuacion: {fileID: 0}
+    resultado: 1
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: 2
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: 3
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: 4
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: 5
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: -1
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: -2
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: -3
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: -4
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: -5
+    moverX: 1
+  - ecuacion: {fileID: 0}
+    resultado: 1
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: 2
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: 3
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: 4
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: 5
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: -1
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: -2
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: -3
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: -4
+    moverX: 0
+  - ecuacion: {fileID: 0}
+    resultado: -5
+    moverX: 0
 --- !u!1 &1388766092
 GameObject:
   m_ObjectHideFlags: 0
@@ -6605,7 +6611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592662345}
   m_Layer: 5
-  m_Name: Botones Jugador 1
+  m_Name: Botones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
