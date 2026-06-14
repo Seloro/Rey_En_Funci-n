@@ -17,16 +17,22 @@ public class GameManager : MonoBehaviour
     public List<Pistas> listaPistas = new List<Pistas>();
     List<int> indicesDisponibles = new List<int>();
 
-
     private void Start()
     {
+        Control_Rey.cambiar += CambiarJugador;
+
         foreach (Transform hijo in contenedorBotones.transform)
             listaBotones.Add(hijo.GetComponent<Button>());
 
         SetearBotones();
     }
 
-    public void CambiarJugador()
+    private void OnDestroy()
+    {
+        Control_Rey.cambiar -= CambiarJugador;
+    }
+
+    void CambiarJugador()
     {
         jugador = 1 - jugador;
         SetearBotones();
@@ -36,6 +42,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (Button boton in listaBotones)
         {
+            boton.interactable = true;
+
             if (indicesDisponibles.Count == 0)
                 indicesDisponibles = Enumerable.Range(0, listaPistas.Count).ToList();
 
@@ -44,13 +52,19 @@ public class GameManager : MonoBehaviour
             indicesDisponibles.RemoveAt(indiceAleatorio);
 
             boton.onClick.RemoveAllListeners();
-            boton.onClick.AddListener(() => CambiarJugador());
+            boton.onClick.AddListener(() => DesactivarBotonesYCronometro());
 
             if (listaPistas[indice].moverX)
                 boton.onClick.AddListener(() => reyes[jugador].IndicarMovimientoX(listaPistas[indice].resultado));
             else
                 boton.onClick.AddListener(() => reyes[jugador].IndicarMovimientoY(listaPistas[indice].resultado));
         }
+    }
+
+    public void DesactivarBotonesYCronometro()
+    {
+        foreach (Button boton in listaBotones)
+            boton.interactable = false;
     }
 }
 

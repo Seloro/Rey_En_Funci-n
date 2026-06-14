@@ -17,6 +17,10 @@ public class Control_Rey : MonoBehaviour
     private Vector3Int posicionActual;
     private Vector3 objetivo;
 
+    bool enviado;
+    public delegate void CambiarJugador();
+    static public CambiarJugador cambiar;
+
     void Start()
     {
         mesh.material.color = color;
@@ -77,6 +81,7 @@ public class Control_Rey : MonoBehaviour
         }
 
         objetivo = nuevaPos;
+        enviado = false;
     }
 
     void Mover()
@@ -86,6 +91,11 @@ public class Control_Rey : MonoBehaviour
             transform.LookAt(objetivo);
 
             transform.position = Vector3.MoveTowards(transform.position, objetivo, velocidad * Time.deltaTime);
+        }
+        else if (!enviado)
+        {
+            cambiar.Invoke();
+            enviado = true;
         }
     }
 }
