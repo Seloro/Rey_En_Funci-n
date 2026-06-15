@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour
     [Header("Pistas")]
     public List<Pistas> listaPistas = new List<Pistas>();
     List<int> indicesDisponibles = new List<int>();
+
+    private void Awake()
+    {
+        CargarEcuaciones();
+    }
 
     private void Start()
     {
@@ -58,6 +65,8 @@ public class GameManager : MonoBehaviour
                 boton.onClick.AddListener(() => reyes[jugador].IndicarMovimientoX(listaPistas[indice].resultado));
             else
                 boton.onClick.AddListener(() => reyes[jugador].IndicarMovimientoY(listaPistas[indice].resultado));
+
+            boton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listaPistas[indice].ecuacion;
         }
     }
 
@@ -66,12 +75,41 @@ public class GameManager : MonoBehaviour
         foreach (Button boton in listaBotones)
             boton.interactable = false;
     }
+
+    void CargarEcuaciones()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, "ecuaciones.txt");
+
+        if (File.Exists(path))
+        {
+            string[] lineas = File.ReadAllLines(path);
+
+            foreach (string linea in lineas)
+            {
+                if (string.IsNullOrWhiteSpace(linea)) continue;
+
+                string[] partes = linea.Split(',');
+
+                if (partes.Length == 3)
+                {
+                    Pistas p = new Pistas
+                    {
+                        ecuacion = partes[0].Trim(),
+                        resultado = int.Parse(partes[1].Trim()),
+                        moverX = bool.Parse(partes[2].Trim())
+                    };
+
+                    listaPistas.Add(p);
+                }
+            }
+        }
+    }
 }
 
 [System.Serializable]
 public class Pistas
 {
-    public Sprite ecuacion;
+    public string ecuacion;
     public int resultado;
     public bool moverX;
 }
