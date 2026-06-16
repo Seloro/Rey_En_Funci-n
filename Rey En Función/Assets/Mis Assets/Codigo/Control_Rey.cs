@@ -36,9 +36,12 @@ public class Control_Rey : MonoBehaviour
     {
         BoundsInt limites = tilemapTablero.cellBounds;
 
-        int columnaInicial = ladoIzquierdo
-            ? Random.Range(limites.xMin + 1, limites.xMin + columnasLimite)
-            : Random.Range(limites.xMax - columnasLimite, limites.xMax - 1);
+        int columnaInicial;
+
+        if (ladoIzquierdo)
+            columnaInicial = Random.Range(limites.xMin + 1, limites.xMin + columnasLimite);
+        else
+            columnaInicial = Random.Range(limites.xMax - columnasLimite, limites.xMax - 1);
 
         int filaInicial = Random.Range(limites.yMin, limites.yMax - 1);
 

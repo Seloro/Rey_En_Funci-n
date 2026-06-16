@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     public List<Pistas> listaPistas = new List<Pistas>();
     List<int> indicesDisponibles = new List<int>();
 
+    [Header("Temporización")]
+    public List<Coronas> imagenes = new List<Coronas>();
+    public float tiempoMaximo;
+    public float[] temp;
+    bool restar;
+
     private void Awake()
     {
         CargarEcuaciones();
@@ -39,10 +45,16 @@ public class GameManager : MonoBehaviour
         Control_Rey.cambiar -= CambiarJugador;
     }
 
+    private void Update()
+    {
+        Temporizador();
+    }
+
     void CambiarJugador()
     {
         jugador = 1 - jugador;
         SetearBotones();
+        restar = true;
     }
 
     void SetearBotones()
@@ -74,6 +86,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (Button boton in listaBotones)
             boton.interactable = false;
+
+        restar = false;
     }
 
     void CargarEcuaciones()
@@ -104,6 +118,21 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    void Temporizador()
+    {
+        if (restar)
+        {
+            temp[jugador] -= Time.deltaTime;
+
+            imagenes[jugador].color.fillAmount = Mathf.Clamp01(temp[jugador] / tiempoMaximo);
+
+            imagenes[jugador].color.color = new Vector4(imagenes[jugador].color.color.r, imagenes[jugador].color.color.g, imagenes[jugador].color.color.b, 1);
+            imagenes[jugador].negro.color = new Vector4(imagenes[jugador].negro.color.r, imagenes[jugador].negro.color.g, imagenes[jugador].negro.color.b, 1);
+            imagenes[1 - jugador].color.color = new Vector4(imagenes[1 - jugador].color.color.r, imagenes[1 - jugador].color.color.g, imagenes[1 - jugador].color.color.b, .5f);
+            imagenes[1 - jugador].negro.color = new Vector4(imagenes[1 - jugador].negro.color.r, imagenes[1 - jugador].negro.color.g, imagenes[1 - jugador].negro.color.b, .5f);
+        }
+    }
 }
 
 [System.Serializable]
@@ -112,4 +141,11 @@ public class Pistas
     public string ecuacion;
     public int resultado;
     public bool moverX;
+}
+
+[System.Serializable]
+public class Coronas
+{
+    public Image color;
+    public Image negro;
 }

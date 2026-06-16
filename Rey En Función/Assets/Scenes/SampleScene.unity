@@ -1500,7 +1500,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 997397408}
+      addedObject: {fileID: 997397409}
   m_SourcePrefab: {fileID: 100100000, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
 --- !u!1 &883147181 stripped
 GameObject:
@@ -1525,7 +1525,7 @@ MonoBehaviour:
     rgba: 4294944000
   ladoIzquierdo: 0
   tilemapTablero: {fileID: 1125520454}
-  columnasLimite: 5
+  columnasLimite: 2
   velocidad: 5
 --- !u!65 &883147184
 BoxCollider:
@@ -1571,7 +1571,7 @@ MonoBehaviour:
     rgba: 4278190335
   ladoIzquierdo: 1
   tilemapTablero: {fileID: 1125520454}
-  columnasLimite: 5
+  columnasLimite: 2
   velocidad: 5
 --- !u!65 &897707775
 BoxCollider:
@@ -1859,27 +1859,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
   m_PrefabInstance: {fileID: 875857396}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &997397408
-BoxCollider:
+--- !u!114 &997397409
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997397406}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.01, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e1530934f12e24887ded194a2c17fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Control_Corona
+  tilemapTablero: {fileID: 1125520454}
+  velocidad: 5
 --- !u!1 &1025381160
 GameObject:
   m_ObjectHideFlags: 0
@@ -5817,6 +5810,15 @@ MonoBehaviour:
   - {fileID: 883147182}
   contenedorBotones: {fileID: 1592662344}
   listaPistas: []
+  imagenes:
+  - color: {fileID: 633448948}
+    negro: {fileID: 234058733}
+  - color: {fileID: 1366433572}
+    negro: {fileID: 2093587076}
+  tiempoMaximo: 600
+  temp:
+  - 600
+  - 600
 --- !u!1 &1287251576
 GameObject:
   m_ObjectHideFlags: 0
