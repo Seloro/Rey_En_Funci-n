@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Jugadores")]
     public Control_Rey[] reyes;
+    public Color[] colores;
     int jugador;
 
     [Header("Botones")]
@@ -32,17 +33,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Control_Rey.cambiar += CambiarJugador;
+        Control_Corona.cambiar += CambiarJugador;
 
         foreach (Transform hijo in contenedorBotones.transform)
             listaBotones.Add(hijo.GetComponent<Button>());
 
+        jugador = Random.Range(0, 2);
         SetearBotones();
     }
 
     private void OnDestroy()
     {
-        Control_Rey.cambiar -= CambiarJugador;
+        Control_Corona.cambiar -= CambiarJugador;
     }
 
     private void Update()
@@ -53,12 +55,13 @@ public class GameManager : MonoBehaviour
     void CambiarJugador()
     {
         jugador = 1 - jugador;
-        SetearBotones();
-        restar = true;
+        Invoke("SetearBotones", 1);
     }
 
     void SetearBotones()
     {
+        restar = true;
+
         foreach (Button boton in listaBotones)
         {
             boton.interactable = true;
@@ -79,6 +82,11 @@ public class GameManager : MonoBehaviour
                 boton.onClick.AddListener(() => reyes[jugador].IndicarMovimientoY(listaPistas[indice].resultado));
 
             boton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listaPistas[indice].ecuacion;
+
+            ColorBlock color = boton.colors;
+            color.highlightedColor = colores[jugador];
+            color.pressedColor = new Vector4(colores[jugador].r * .5f, colores[jugador].g * .5f, colores[jugador].b * .5f, 1);
+            boton.colors = color;
         }
     }
 

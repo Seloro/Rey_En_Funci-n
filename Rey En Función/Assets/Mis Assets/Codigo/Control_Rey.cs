@@ -18,8 +18,8 @@ public class Control_Rey : MonoBehaviour
     private Vector3 objetivo;
 
     bool enviado;
-    public delegate void CambiarJugador();
-    static public CambiarJugador cambiar;
+    public delegate void ComprobarCorona(GameObject rey);
+    static public ComprobarCorona comprobar;
 
     void Start()
     {
@@ -47,7 +47,9 @@ public class Control_Rey : MonoBehaviour
 
         posicionActual = new Vector3Int(columnaInicial, filaInicial, 0);
         transform.position = tilemapTablero.GetCellCenterWorld(posicionActual) + Vector3.up;
+
         objetivo = transform.position;
+        enviado = true;
     }
 
     public void IndicarMovimientoX(int x)
@@ -97,7 +99,7 @@ public class Control_Rey : MonoBehaviour
         }
         else if (!enviado)
         {
-            cambiar.Invoke();
+            comprobar.Invoke(gameObject);
             enviado = true;
         }
     }
