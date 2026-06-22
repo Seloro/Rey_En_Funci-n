@@ -9,6 +9,7 @@ public class Control_Corona : MonoBehaviour
     [Header("Movimiento")]
     public float velocidad;
     public int distanciaMax;
+    public float velocidadDeRotacion;
     private Vector3Int posicionActual;
     private Vector3 objetivo;
 
@@ -36,6 +37,7 @@ public class Control_Corona : MonoBehaviour
     void Update()
     {
         Mover();
+        transform.Rotate(0f, velocidadDeRotacion * Time.deltaTime, 0f);
     }
 
     void Pocisionamiento()

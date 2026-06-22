@@ -1464,11 +1464,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3469552933019998406, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.7933534
       objectReference: {fileID: 0}
     - target: {fileID: -3469552933019998406, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.38268343
+      value: -0.60876137
       objectReference: {fileID: 0}
     - target: {fileID: -3469552933019998406, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1480,7 +1480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3469552933019998406, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -45
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: -3469552933019998406, guid: 1d9d85a892f9b8048adb5d24e08ac4e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1874,6 +1874,7 @@ MonoBehaviour:
   tilemapTablero: {fileID: 1125520454}
   velocidad: 5
   distanciaMax: 3
+  velocidadDeRotacion: 5
 --- !u!1 &1025381160
 GameObject:
   m_ObjectHideFlags: 0
