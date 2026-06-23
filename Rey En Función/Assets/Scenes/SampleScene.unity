@@ -304,6 +304,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83dec4ec1d7858544a07cc3298fdbbd9, type: 3}
+      propertyPath: m_TagString
+      value: Jugador 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6341232440523022669, guid: 83dec4ec1d7858544a07cc3298fdbbd9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1527,6 +1531,9 @@ MonoBehaviour:
   tilemapTablero: {fileID: 1125520454}
   columnasLimite: 2
   velocidad: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 119
 --- !u!65 &883147184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1573,6 +1580,9 @@ MonoBehaviour:
   tilemapTablero: {fileID: 1125520454}
   columnasLimite: 2
   velocidad: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 63
 --- !u!65 &897707775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1875,6 +1885,9 @@ MonoBehaviour:
   velocidad: 5
   distanciaMax: 3
   velocidadDeRotacion: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1 &1025381160
 GameObject:
   m_ObjectHideFlags: 0
@@ -6366,6 +6379,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 83dec4ec1d7858544a07cc3298fdbbd9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83dec4ec1d7858544a07cc3298fdbbd9, type: 3}
+      propertyPath: m_TagString
+      value: Jugador 1
       objectReference: {fileID: 0}
     - target: {fileID: 6341232440523022669, guid: 83dec4ec1d7858544a07cc3298fdbbd9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

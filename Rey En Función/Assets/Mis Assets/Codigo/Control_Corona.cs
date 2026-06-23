@@ -12,6 +12,7 @@ public class Control_Corona : MonoBehaviour
     public float velocidadDeRotacion;
     private Vector3Int posicionActual;
     private Vector3 objetivo;
+    public LayerMask mask;
 
     bool enviado;
     public delegate void CambiarJugador();
@@ -99,7 +100,7 @@ public class Control_Corona : MonoBehaviour
             {
                 Vector3 siguiente = nuevaPos + direccion.normalized;
 
-                if (Physics.Raycast(siguiente, Vector3.down, 1f))
+                if (Physics.Raycast(siguiente, Vector3.down, 1f, mask))
                     nuevaPos = siguiente;
                 else
                     i += cantidadPasos;

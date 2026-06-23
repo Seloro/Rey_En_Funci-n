@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class Casillas : MonoBehaviour
 {
-    BoxCollider col;
-
-    void Start()
-    {
-        col = GetComponent<BoxCollider>();
-    }
-
     void Update()
     {
         if (true)
@@ -24,6 +17,7 @@ public class Casillas : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.up, out hit, 2))
         {
             gameObject.layer = hit.collider.gameObject.layer;
+            gameObject.tag = hit.collider.gameObject.tag;
 
             Control_Rey rey = hit.collider.GetComponent<Control_Rey>();
             if (rey != null)
@@ -36,8 +30,6 @@ public class Casillas : MonoBehaviour
                     rend.material.SetColor("_Color_Base", colorImpacto);
                 }
             }
-
-            col.size = new Vector3(1, 2, 1);
         }
     }
 }
