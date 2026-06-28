@@ -5837,6 +5837,47 @@ MonoBehaviour:
   temp:
   - 600
   - 600
+  listaPistasEjes:
+  - ejes:
+    - ecuacion: "X\xB2 - 2X + 1 = 0"
+      resultado: 1
+      moverX: 1
+    - ecuacion: X + X + 4 = 10
+      resultado: 3
+      moverX: 1
+    - ecuacion: 3X + 2 = 11
+      resultado: 3
+      moverX: 1
+  - ejes:
+    - ecuacion: "X\xB2 + 6X + 9 = 0"
+      resultado: -3
+      moverX: 1
+    - ecuacion: X - 12 = -15
+      resultado: -3
+      moverX: 1
+    - ecuacion: 2X + 5 = -1
+      resultado: -3
+      moverX: 1
+  - ejes:
+    - ecuacion: "Y\xB2 - 4Y + 4 = 0"
+      resultado: 2
+      moverX: 0
+    - ecuacion: Y + Y + 6 = 12
+      resultado: 3
+      moverX: 0
+    - ecuacion: 3Y - 6 = 9
+      resultado: 5
+      moverX: 0
+  - ejes:
+    - ecuacion: "Y\xB2 + 8Y + 16 = 0"
+      resultado: -4
+      moverX: 0
+    - ecuacion: Y - 11 = -15
+      resultado: -4
+      moverX: 0
+    - ecuacion: 2Y + 2Y = -20
+      resultado: -5
+      moverX: 0
 --- !u!1 &1287251576
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
+using Unity.AppUI.Redux;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,12 @@ public class GameManager : MonoBehaviour
     public float tiempoMaximo;
     public float[] temp;
     bool restar;
+
+    [Header("Comprobacion de movimiento")]
+    public List<PistasEjes> listaPistasEjes = new List<PistasEjes>();
+    List<Pistas> listaComprobacion = new List<Pistas>();
+    bool[] ejes = new bool[4];
+    int respuestasCorrectas;
 
     private void Awake()
     {
@@ -83,10 +90,104 @@ public class GameManager : MonoBehaviour
 
             boton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listaPistas[indice].ecuacion;
 
+            listaComprobacion.Add(listaPistas[indice]);
+
+            ComprobadorDeOpcionesBalidas();
+
             ColorBlock color = boton.colors;
             color.highlightedColor = colores[jugador];
             color.pressedColor = new Vector4(colores[jugador].r * .5f, colores[jugador].g * .5f, colores[jugador].b * .5f, 1);
             boton.colors = color;
+        }
+    }
+
+    void ComprobadorDeOpcionesBalidas()
+    {
+        respuestasCorrectas = 0;
+
+        for (int i = 0; i < ejes.Length; i++)
+            ejes[i] = false;
+
+        if (!Physics.Raycast(reyes[jugador].gameObject.transform.position, Vector3.right, 1f))
+        {
+            Vector3 siguiente = reyes[jugador].gameObject.transform.position + Vector3.right;
+
+            if (Physics.Raycast(siguiente, Vector3.down, 1f, ~(1 << reyes[jugador].gameObject.layer)))
+                ejes[0] = true;
+        }
+        else if (!Physics.Raycast(reyes[jugador].gameObject.transform.position, Vector3.left, 1f))
+        {
+            Vector3 siguiente = reyes[jugador].gameObject.transform.position + Vector3.left;
+
+            if (Physics.Raycast(siguiente, Vector3.down, 1f, ~(1 << reyes[jugador].gameObject.layer)))
+                ejes[1] = true;
+        }
+        else if (!Physics.Raycast(reyes[jugador].gameObject.transform.position, Vector3.forward, 1f))
+        {
+            Vector3 siguiente = reyes[jugador].gameObject.transform.position + Vector3.forward;
+
+            if (Physics.Raycast(siguiente, Vector3.down, 1f, ~(1 << reyes[jugador].gameObject.layer)))
+                ejes[2] = true;
+        }
+        else if (!Physics.Raycast(reyes[jugador].gameObject.transform.position, Vector3.back, 1f))
+        {
+            Vector3 siguiente = reyes[jugador].gameObject.transform.position + Vector3.back;
+
+            if (Physics.Raycast(siguiente, Vector3.down, 1f, ~(1 << reyes[jugador].gameObject.layer)))
+                ejes[3] = true;
+        }
+
+        foreach (Pistas pista in listaComprobacion)
+        {
+            if (pista.moverX && pista.resultado > 0 && ejes[0] == true)
+                respuestasCorrectas++;
+            else if (pista.moverX && pista.resultado < 0 && ejes[1] == true)
+                respuestasCorrectas++;
+            else if (!pista.moverX && pista.resultado > 0 && ejes[2] == true)
+                respuestasCorrectas++;
+            else if (!pista.moverX && pista.resultado < 0 && ejes[3] == true)
+                respuestasCorrectas++;
+        }
+
+        if (respuestasCorrectas <= 0)
+        {
+            int pocicion = 0;
+
+            for (int i = 0; i < ejes.Length; i++)
+            {
+                if (ejes[i])
+                {
+                    listaBotones[pocicion].onClick.RemoveAllListeners();
+                    listaBotones[pocicion].onClick.AddListener(() => DesactivarBotonesYCronometro());
+
+                    int indiceEje = Random.Range(0, listaPistasEjes[i].ejes.Count);
+
+                    if (listaPistasEjes[i].ejes[indiceEje].moverX)
+                        listaBotones[pocicion].onClick.AddListener(() => reyes[jugador].IndicarMovimientoX(listaPistasEjes[i].ejes[indiceEje].resultado));
+                    else
+                        listaBotones[pocicion].onClick.AddListener(() => reyes[jugador].IndicarMovimientoY(listaPistasEjes[i].ejes[indiceEje].resultado));
+
+                    listaBotones[pocicion].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listaPistasEjes[i].ejes[indiceEje].ecuacion;
+
+                    pocicion++;
+                }
+            }
+
+            MescladorDeBotones();
+        }
+    }
+
+    void MescladorDeBotones()
+    {
+        System.Random rng = new System.Random();
+        int n = listaBotones.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            Button value = listaBotones[k];
+            listaBotones[k] = listaBotones[n];
+            listaBotones[n] = value;
         }
     }
 
@@ -149,6 +250,13 @@ public class Pistas
     public string ecuacion;
     public int resultado;
     public bool moverX;
+}
+
+[System.Serializable]
+public class PistasEjes
+{
+    public List<Pistas> ejes = new List<Pistas>();
+
 }
 
 [System.Serializable]
