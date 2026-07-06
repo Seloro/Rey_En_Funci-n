@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Jugador 1
   - Jugador 2
+  - Pintador
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Jugador 2
-  - 
+  - Corona
   - 
   - 
   - 

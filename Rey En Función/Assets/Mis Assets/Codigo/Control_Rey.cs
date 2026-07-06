@@ -7,11 +7,6 @@ public class Control_Rey : MonoBehaviour
     public MeshRenderer mesh;
     public Color32 color;
 
-    [Header("Configuración Inicial")]
-    public bool ladoIzquierdo = true;
-    public Tilemap tilemapTablero;
-    public int columnasLimite = 5;
-
     [Header("Movimiento")]
     public float velocidad;
     private Vector3Int posicionActual;
@@ -19,38 +14,22 @@ public class Control_Rey : MonoBehaviour
     public LayerMask mask;
 
     bool enviado;
+    int pintadasDisponibles;
+
     public delegate void ComprobarCorona(GameObject rey);
     static public ComprobarCorona comprobar;
 
     void Start()
     {
         mesh.material.color = color;
-        Pocisionamiento();
+        objetivo = transform.position;
+        enviado = true;
     }
 
     private void Update()
     {
         Mover();
-    }
-
-    void Pocisionamiento()
-    {
-        BoundsInt limites = tilemapTablero.cellBounds;
-
-        int columnaInicial;
-
-        if (ladoIzquierdo)
-            columnaInicial = Random.Range(limites.xMin + 1, limites.xMin + columnasLimite);
-        else
-            columnaInicial = Random.Range(limites.xMax - columnasLimite, limites.xMax - 1);
-
-        int filaInicial = Random.Range(limites.yMin, limites.yMax - 1);
-
-        posicionActual = new Vector3Int(columnaInicial, filaInicial, 0);
-        transform.position = tilemapTablero.GetCellCenterWorld(posicionActual) + Vector3.up;
-
-        objetivo = transform.position;
-        enviado = true;
+        Pintar();
     }
 
     public void IndicarMovimientoX(int x)
@@ -103,5 +82,29 @@ public class Control_Rey : MonoBehaviour
             comprobar.Invoke(gameObject);
             enviado = true;
         }
+    }
+
+    void Pintar()
+    {
+        if (pintadasDisponibles > 0)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, mask))
+            {
+                pintadasDisponibles--;
+
+                hit.collider.gameObject.layer = gameObject.layer;
+
+                Renderer rend = hit.collider.gameObject.GetComponent<Renderer>();
+                if (rend != null)
+                    rend.material.SetColor("_Color_Base", color);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pintador"))
+            pintadasDisponibles += 10;
     }
 }

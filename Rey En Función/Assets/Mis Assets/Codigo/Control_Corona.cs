@@ -1,33 +1,31 @@
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Control_Corona : MonoBehaviour
 {
     [Header("Configuración Inicial")]
-    public Tilemap tilemapTablero;
+    public Color32 color;
 
     [Header("Movimiento")]
     public float velocidad;
     public int distanciaMax;
     public float velocidadDeRotacion;
-    private Vector3Int posicionActual;
     private Vector3 objetivo;
     public LayerMask mask;
 
     bool enviado;
+    int pintadasDisponibles;
+
     public delegate void CambiarJugador();
     static public CambiarJugador cambiar;
-
-    private void Awake()
-    {
-        tilemapTablero.CompressBounds();
-    }
 
     void Start()
     {
         Control_Rey.comprobar += ComprobarAccion;
 
-        Pocisionamiento();
+        objetivo = transform.position;
+        enviado = true;
     }
 
     private void OnDestroy()
@@ -38,31 +36,8 @@ public class Control_Corona : MonoBehaviour
     void Update()
     {
         Mover();
+        Pintar();
         transform.Rotate(0f, velocidadDeRotacion * Time.deltaTime, 0f);
-    }
-
-    void Pocisionamiento()
-    {
-        BoundsInt limites = tilemapTablero.cellBounds;
-
-        int centroX = (limites.xMin + limites.xMax) / 2;
-        int centroY = (limites.yMin + limites.yMax) / 2;
-
-        Vector3Int[] casillasCentrales = new Vector3Int[]
-        {
-        new Vector3Int(centroX,     centroY,     0),
-        new Vector3Int(centroX - 1, centroY,     0),
-        new Vector3Int(centroX,     centroY - 1, 0),
-        new Vector3Int(centroX - 1, centroY - 1, 0)
-        };
-
-        int indice = Random.Range(0, casillasCentrales.Length);
-        posicionActual = casillasCentrales[indice];
-
-        transform.position = tilemapTablero.GetCellCenterWorld(posicionActual) + Vector3.up;
-
-        objetivo = transform.position;
-        enviado = true;
     }
 
     void ComprobarAccion(GameObject rey)
@@ -123,5 +98,30 @@ public class Control_Corona : MonoBehaviour
             cambiar.Invoke();
             enviado = true;
         }
+    }
+
+    void Pintar()
+    {
+        if (pintadasDisponibles > 0)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, mask))
+            {
+                pintadasDisponibles--;
+
+                hit.collider.gameObject.layer = gameObject.layer;
+
+                Renderer rend = hit.collider.gameObject.GetComponent<Renderer>();
+                if (rend != null)
+                    rend.material.SetColor("_Color_Base", color);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pintador"))
+            pintadasDisponibles += 10;
     }
 }

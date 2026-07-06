@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
-using Unity.AppUI.Redux;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
     List<Pistas> listaComprobacion = new List<Pistas>();
     bool[] ejes = new bool[4];
     int respuestasCorrectas;
+    bool mesclar;
 
     private void Awake()
     {
@@ -98,6 +98,12 @@ public class GameManager : MonoBehaviour
             color.highlightedColor = colores[jugador];
             color.pressedColor = new Vector4(colores[jugador].r * .5f, colores[jugador].g * .5f, colores[jugador].b * .5f, 1);
             boton.colors = color;
+        }
+
+        if (mesclar)
+        {
+            mesclar = false;
+            MescladorDeBotones();
         }
     }
 
@@ -173,7 +179,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            MescladorDeBotones();
+            mesclar = true;
         }
     }
 
