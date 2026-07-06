@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     int respuestasCorrectas;
     bool mesclar;
 
+    public delegate void VerificarAplicasionesDeEfectos();
+    public static VerificarAplicasionesDeEfectos verificar;
+
     private void Awake()
     {
         CargarEcuaciones();
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         jugador = 1 - jugador;
         Invoke("SetearBotones", 1);
+        verificar.Invoke();
     }
 
     void SetearBotones()

@@ -48,4 +48,9 @@ public class Pintador : MonoBehaviour
 
         Invoke("CambiarObjetivo", Random.Range(intervaloDeCambio * .75f, intervaloDeCambio * 1.25f));
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        gameObject.SetActive(false);
+    }
 }
