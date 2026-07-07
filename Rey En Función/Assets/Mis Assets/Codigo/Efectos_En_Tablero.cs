@@ -10,6 +10,11 @@ public class Efectos_En_Tablero : MonoBehaviour
     public int cantidadDeCasillasAfectadas;
     public LayerMask capas;
 
+    private void Awake()
+    {
+        tablero.CompressBounds();
+    }
+
     private void Start()
     {
         Enviar_A_Tablero.enviar += ActivarEfecto;
