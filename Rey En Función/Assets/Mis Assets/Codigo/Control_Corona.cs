@@ -14,6 +14,7 @@ public class Control_Corona : MonoBehaviour
     public float velocidadDeRotacion;
     private Vector3 objetivo;
     public LayerMask mask;
+    public LayerMask noPintar;
 
     bool enviado;
     int pintadasDisponibles;
@@ -110,7 +111,7 @@ public class Control_Corona : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, mask))
+            if (Physics.Raycast(transform.position + (transform.forward * .2f), Vector3.down, out hit, 1f, noPintar))
             {
                 pintadasDisponibles--;
 

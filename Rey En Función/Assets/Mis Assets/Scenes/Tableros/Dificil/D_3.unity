@@ -9073,6 +9073,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 115
+  noPintar:
+    serializedVersion: 2
+    m_Bits: 191
 --- !u!65 &883147184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9223,6 +9226,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 59
+  noPintar:
+    serializedVersion: 2
+    m_Bits: 247
 --- !u!65 &897707775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10156,6 +10162,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 179
+  noPintar:
+    serializedVersion: 2
+    m_Bits: 127
 --- !u!65 &997397410
 BoxCollider:
   m_ObjectHideFlags: 0

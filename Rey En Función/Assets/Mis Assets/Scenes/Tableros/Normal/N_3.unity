@@ -9387,6 +9387,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 115
+  noPintar:
+    serializedVersion: 2
+    m_Bits: 191
 --- !u!65 &883147184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9537,6 +9540,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 59
+  noPintar:
+    serializedVersion: 2
+    m_Bits: 247
 --- !u!65 &897707775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10408,6 +10414,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 179
+  noPintar:
+    serializedVersion: 2
+    m_Bits: 127
 --- !u!65 &997397410
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16876,6 +16885,7 @@ MonoBehaviour:
     - ecuacion: 2Y + 2Y = -20
       resultado: -5
       moverX: 0
+  sinPowerUP: 0
 --- !u!114 &1265569455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16896,6 +16906,7 @@ MonoBehaviour:
   contenedorPosicionesJugador: {fileID: 24286308}
   contenedorPosicionesCorona: {fileID: 739571724}
   contenedorPosicionesPowerUP: {fileID: 872671846}
+  sinPowerUP: 0
 --- !u!114 &1265569456
 MonoBehaviour:
   m_ObjectHideFlags: 0
