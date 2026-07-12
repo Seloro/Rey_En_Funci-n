@@ -54,6 +54,8 @@ public class Control_Corona : MonoBehaviour
         {
             if (pudoMoverme)
                 Calcularmovimiento();
+
+            enviado = false;
         }
     }
 
@@ -87,8 +89,6 @@ public class Control_Corona : MonoBehaviour
             else
                 i += cantidadPasos;
         }
-
-        enviado = false;
         objetivo = nuevaPos;
     }
     void Mover()

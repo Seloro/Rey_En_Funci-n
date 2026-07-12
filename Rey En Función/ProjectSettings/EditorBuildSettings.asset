@@ -6,8 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Mis Assets/Scenes/Tablero de pruebas.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Mis Assets/Scenes/Menu inicio.unity
+    guid: 66b1dc36256d3e94e86fdba74f16720f
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Fasil/F_1.unity
+    guid: 20d82ce1ab5d81c41a3729d6618504a9
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Fasil/F_2.unity
+    guid: dd4b248cd35257c4a9ebf3d5950595e4
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Fasil/F_3.unity
+    guid: 4fc1db5be66a02d4d805bf8255997619
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Normal/N_1.unity
+    guid: 2787059bb4a307b44a7915a22a4708cb
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Normal/N_2.unity
+    guid: d6ab65a1ef9878f45874d4705cf13f33
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Normal/N_3.unity
+    guid: 6dce0e5824d4d2243a61633bdd58e64c
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Dificil/D_1.unity
+    guid: 80158f970ccb46f4f9558b9c2d0fb61b
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Dificil/D_2.unity
+    guid: acfd19096fcc6b341baf699d3a5ced45
+  - enabled: 1
+    path: Assets/Mis Assets/Scenes/Tableros/Dificil/D_3.unity
+    guid: 9bfc7cb65652cbe4b9ea8fb2edcbc627
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
