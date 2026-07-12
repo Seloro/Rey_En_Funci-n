@@ -6,6 +6,7 @@ public class Control_Corona : MonoBehaviour
 {
     [Header("Configuración Inicial")]
     public Color32 color;
+    public bool pudoMoverme;
 
     [Header("Movimiento")]
     public float velocidad;
@@ -19,6 +20,9 @@ public class Control_Corona : MonoBehaviour
 
     public delegate void CambiarJugador();
     static public CambiarJugador cambiar;
+
+    public delegate void AvisarDeFinDePartida(int indice);
+    static public AvisarDeFinDePartida avisar;
 
     void Start()
     {
@@ -44,11 +48,11 @@ public class Control_Corona : MonoBehaviour
     {
         if (rey.transform.position == transform.position)
         {
-
+            avisar.Invoke(1);
         }
         else
         {
-            if (true)
+            if (pudoMoverme)
                 Calcularmovimiento();
         }
     }

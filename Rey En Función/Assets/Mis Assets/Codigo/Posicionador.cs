@@ -17,16 +17,24 @@ public class Posicionador : MonoBehaviour
     List<Transform> listaPosicionesCorona = new List<Transform>();
     List<Transform> listaPosicionesPowerUP = new List<Transform>();
 
+    [Header("Power UP")]
+    public bool sinPowerUP;
+
     private void Awake()
     {
         CargarHijosEnLista(contenedorPosicionesJugador, listaPosicionesJugador);
         CargarHijosEnLista(contenedorPosicionesCorona, listaPosicionesCorona);
-        CargarHijosEnLista(contenedorPosicionesPowerUP, listaPosicionesPowerUP);
-        CargarHijosEnLista(contenedorPowerUP, powerUP);
 
         AsignarPosicionAleatoria(corona, listaPosicionesCorona);
         AsignarPosicionAleatoria(jugadores, listaPosicionesJugador);
-        AsignarPosicionAleatoria(powerUP, listaPosicionesPowerUP);
+
+        if (!sinPowerUP)
+        {
+            CargarHijosEnLista(contenedorPosicionesPowerUP, listaPosicionesPowerUP);
+            CargarHijosEnLista(contenedorPowerUP, powerUP);
+
+            AsignarPosicionAleatoria(powerUP, listaPosicionesPowerUP);
+        }
     }
 
     public void CargarHijosEnLista(Transform contenedor, List<Transform> lista)

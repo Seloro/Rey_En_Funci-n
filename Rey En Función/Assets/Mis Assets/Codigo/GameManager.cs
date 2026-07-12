@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -26,12 +27,20 @@ public class GameManager : MonoBehaviour
     public float[] temp;
     bool restar;
 
+    [Header("Pantallas de mensajes")]
+    public TextMeshProUGUI texto;
+    public string[] mensaje;
+    public GameObject[] botonesDeMensaje;
+
     [Header("Comprobacion de movimiento")]
     public List<PistasEjes> listaPistasEjes = new List<PistasEjes>();
     List<Pistas> listaComprobacion = new List<Pistas>();
     bool[] ejes = new bool[4];
     int respuestasCorrectas;
     bool mesclar;
+
+    [Header("Power UP")]
+    public bool sinPowerUP;
 
     public delegate void VerificarAplicasionesDeEfectos();
     public static VerificarAplicasionesDeEfectos verificar;
@@ -44,17 +53,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Control_Corona.cambiar += CambiarJugador;
+        Control_Corona.avisar += CargarMensaje;
 
         foreach (Transform hijo in contenedorBotones.transform)
             listaBotones.Add(hijo.GetComponent<Button>());
 
         jugador = Random.Range(0, 2);
         SetearBotones();
+
+        CargarMensaje(0);
     }
 
     private void OnDestroy()
     {
         Control_Corona.cambiar -= CambiarJugador;
+        Control_Corona.avisar -= CargarMensaje;
     }
 
     private void Update()
@@ -66,7 +79,8 @@ public class GameManager : MonoBehaviour
     {
         jugador = 1 - jugador;
         Invoke("SetearBotones", 1);
-        verificar.Invoke();
+        if (!sinPowerUP)
+            verificar.Invoke();
     }
 
     void SetearBotones()
@@ -251,6 +265,54 @@ public class GameManager : MonoBehaviour
             imagenes[1 - jugador].color.color = new Vector4(imagenes[1 - jugador].color.color.r, imagenes[1 - jugador].color.color.g, imagenes[1 - jugador].color.color.b, .5f);
             imagenes[1 - jugador].negro.color = new Vector4(imagenes[1 - jugador].negro.color.r, imagenes[1 - jugador].negro.color.g, imagenes[1 - jugador].negro.color.b, .5f);
         }
+        
+        if (temp[jugador] <= 0)
+        {
+            jugador = 1 - jugador;
+
+            if (temp[jugador] <= 0)
+                CargarMensaje(2);
+        }
+    }
+
+    void CargarMensaje(int indice)
+    {
+        texto.gameObject.SetActive(true);
+        texto.text = mensaje[indice];
+        texto.color = colores[jugador];
+        botonesDeMensaje[Mathf.Clamp(indice, 0, 1)].SetActive(true);
+
+        DesactivarBotonesYCronometro();
+    }
+
+    public void IniciarPartida()
+    {
+        foreach (Button boton in listaBotones)
+        {
+            boton.interactable = true;
+            ColorBlock color = boton.colors;
+            color.highlightedColor = colores[jugador];
+            color.pressedColor = new Vector4(colores[jugador].r * .5f, colores[jugador].g * .5f, colores[jugador].b * .5f, 1);
+            boton.colors = color;
+        }
+
+        restar = true;
+        botonesDeMensaje[0].SetActive(false);
+        texto.gameObject.SetActive(false);
+    }
+
+    public void CambiarAJugador()
+    {
+        jugador = 1 - jugador;
+        texto.color = colores[jugador];
+    }
+
+    public void ReintentarOSalir(bool salir)
+    {
+        if (salir)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        else
+            SceneManager.LoadScene(0);
     }
 }
 
