@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 public class Control_Rey : MonoBehaviour
 {
     [Header("Color")]
-    public MeshRenderer mesh;
+    //public MeshRenderer mesh;
     public Color32 color;
 
     [Header("Movimiento")]
@@ -22,7 +22,7 @@ public class Control_Rey : MonoBehaviour
 
     void Start()
     {
-        mesh.material.color = color;
+        //mesh.material.color = color;
         objetivo = transform.position;
         enviado = true;
     }
@@ -74,7 +74,7 @@ public class Control_Rey : MonoBehaviour
     {
         if (transform.position != objetivo)
         {
-            transform.LookAt(objetivo);
+            //transform.LookAt(objetivo);
 
             transform.position = Vector3.MoveTowards(transform.position, objetivo, velocidad * Time.deltaTime);
         }
