@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Control_Rey[] reyes;
     public Color[] colores;
     int jugador;
+    public string[] nombres;
 
     [Header("Botones")]
     public GameObject contenedorBotones;
@@ -41,6 +42,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Power UP")]
     public bool sinPowerUP;
+
+    [Header("Comprobacion de movimiento")]
+    public GameObject pausa;
+    public GameObject opcionesPausa;
 
     public delegate void VerificarAplicasionesDeEfectos();
     public static VerificarAplicasionesDeEfectos verificar;
@@ -112,10 +117,8 @@ public class GameManager : MonoBehaviour
 
             ComprobadorDeOpcionesBalidas();
 
-            ColorBlock color = boton.colors;
-            color.highlightedColor = colores[jugador];
-            color.pressedColor = new Vector4(colores[jugador].r * .5f, colores[jugador].g * .5f, colores[jugador].b * .5f, 1);
-            boton.colors = color;
+            Image imagen = boton.GetComponent<Image>();
+            imagen.color = colores[jugador];
         }
 
         if (mesclar)
@@ -218,7 +221,10 @@ public class GameManager : MonoBehaviour
     public void DesactivarBotonesYCronometro()
     {
         foreach (Button boton in listaBotones)
+        {
             boton.interactable = false;
+            boton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+        }
 
         restar = false;
     }
@@ -279,10 +285,14 @@ public class GameManager : MonoBehaviour
     {
         texto.gameObject.SetActive(true);
         texto.text = mensaje[indice];
+
+        if (indice < 2) 
+            texto.text += " " + nombres[jugador];
+
         texto.color = colores[jugador];
         botonesDeMensaje[Mathf.Clamp(indice, 0, 1)].SetActive(true);
 
-        DesactivarBotonesYCronometro();
+        restar = false;
     }
 
     public void IniciarPartida()
@@ -290,21 +300,22 @@ public class GameManager : MonoBehaviour
         foreach (Button boton in listaBotones)
         {
             boton.interactable = true;
-            ColorBlock color = boton.colors;
-            color.highlightedColor = colores[jugador];
-            color.pressedColor = new Vector4(colores[jugador].r * .5f, colores[jugador].g * .5f, colores[jugador].b * .5f, 1);
-            boton.colors = color;
+
+            Image imagen = boton.GetComponent<Image>();
+            imagen.color = colores[jugador];
         }
 
         restar = true;
         botonesDeMensaje[0].SetActive(false);
         texto.gameObject.SetActive(false);
+        pausa.SetActive(true);
     }
 
     public void CambiarAJugador()
     {
         jugador = 1 - jugador;
         texto.color = colores[jugador];
+        texto.text = mensaje[0] + " " + nombres[jugador];
     }
 
     public void ReintentarOSalir(bool salir)
@@ -313,6 +324,15 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         else
             SceneManager.LoadScene(0);
+    }
+
+    public void PausarOReanudaJuego(bool reanudar)
+    {
+        texto.text = "Pausa";
+        texto.gameObject.SetActive(!reanudar);
+        opcionesPausa.SetActive(!reanudar);
+        pausa.SetActive(reanudar);
+        restar = reanudar;
     }
 }
 

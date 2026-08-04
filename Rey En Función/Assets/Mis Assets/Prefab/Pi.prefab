@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6868422732232264399, guid: 19da9b104fb0eb04ea8ee7eacec22699, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1092908461518179822, guid: 19da9b104fb0eb04ea8ee7eacec22699, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 19da9b104fb0eb04ea8ee7eacec22699, type: 3}
       propertyPath: m_Name
       value: Pi

@@ -65,6 +65,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b4bc74aab514b014aa4f0350eae74e51, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b4bc74aab514b014aa4f0350eae74e51, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: eb85eb2083626ec40897f0749be9484f, type: 2}
@@ -109,7 +113,7 @@ MonoBehaviour:
   pudoMoverme: 0
   velocidad: 5
   distanciaMax: 3
-  velocidadDeRotacion: 5
+  velocidadDeRotacion: 0
   mask:
     serializedVersion: 2
     m_Bits: 179
